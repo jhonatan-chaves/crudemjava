@@ -11,12 +11,22 @@ public class Main {
 		
 		ContatoDAO contatoDAO = new ContatoDAO();
 		
-		/*Contato contato = new Contato();
-		contato.setNome("");
-	    contato.setIdade(24);
-	    contato.setDataCadastro(new Date());*/
+		Contato contato = new Contato();
+		contato.setNome("freeza");
+	    contato.setIdade(26);
+	    contato.setDataCadastro(new Date());
 	    
-	    //contatoDAO.save(contato);
+	   // contatoDAO.save(contato);
+	    
+	    Contato contatoATL = new Contato();
+	    
+	    contatoATL.setNome("jhonatan chaves silva ribeiro");
+	    contatoATL.setIdade(26);
+	    contatoATL.setDataCadastro(new Date());
+	    
+	    contatoATL.setId(6);
+	    
+	    contatoDAO.update(contatoATL);
 
 		for (Contato c: contatoDAO.getContatos()) {
 

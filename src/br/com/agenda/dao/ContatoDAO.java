@@ -16,6 +16,7 @@ public class ContatoDAO {
 	 * crud c: created r: read u: update d: delete
 	 **/
 	public void save(Contato contato) {
+
 		String sql = "INSERT INTO contatos(nome, idade, datacadastro) VALUES (?, ?, ?)";
 
 		Connection conn = null;
@@ -29,15 +30,13 @@ public class ContatoDAO {
 			pstm.setInt(2, contato.getIdade());
 			pstm.setDate(3, new Date(contato.getDataCadastro().getTime()));
 
-			int adiciona = pstm.executeUpdate();
-			if (adiciona > 0) {
-				System.out.println("adicionado com sucesso");
-			} else {
-				System.out.println("ocorreu um erro ao adicionar o conato no banco de dados");
-			}
+			pstm.executeUpdate();
+			System.out.println("adicionado com sucesso");
 
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("não foi possivel adiconar o contato no banco de dados");
 		} finally {
 			try {
 				if (pstm != null) {
@@ -55,6 +54,50 @@ public class ContatoDAO {
 
 	}
 
+	public void update(Contato contato) {
+		
+		String sql = "UPDATE contatos SET nome = ?, idade = ?, dataCadastro = ? " +
+		                "WHERE id = ?";
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		
+		
+		try {
+			
+			conn = ConnectionFactory.createConnectionToMySQL();
+			
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setString(1, contato.getNome());
+			pstm.setInt(2, contato.getIdade());
+			pstm.setDate(3, new Date(contato.getDataCadastro().getTime()));
+			
+			pstm.setInt(4, contato.getId());
+			
+			pstm.executeUpdate();
+			
+			System.out.println("ATUALIZADO COM SUCESSO");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("não foi possivel atualizar");
+		}finally {
+			try {
+				if(conn != null) {
+					conn.close();
+				}
+				
+				if(pstm != null) {
+					pstm.close();
+				}
+				
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public List<Contato> getContatos()  {
 		String sql = "SELECT * FROM contatos";
 
@@ -110,4 +153,6 @@ public class ContatoDAO {
 
 	}
 
+	
+	
 }
