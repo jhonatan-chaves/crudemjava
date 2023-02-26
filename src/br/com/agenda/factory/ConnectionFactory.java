@@ -7,7 +7,7 @@ public class ConnectionFactory {
 	
 	private static final String USERNAME = "root";
 	
-	private static final String PASSWORD = "182050";
+	private static final String PASSWORD = "";
 	
 	private static final String DATABASE_URL = "jdbc:mysql://localhost/agenda";
 	

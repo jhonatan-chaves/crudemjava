@@ -98,6 +98,38 @@ public class ContatoDAO {
 		}
 	}
 	
+	public void deleteById (int id) {
+		String sql = "DELETE FROM contatos WHERE id = ?";
+		
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			conn = ConnectionFactory.createConnectionToMySQL();
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setInt(1, id);
+			pstm.executeUpdate();
+			
+			System.out.println("deletado com sucesso");
+		} catch (Exception e) {
+			System.out.println("não foi possivel deletar o contato no banco de dados");
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) {
+					conn.close();
+				}
+				if(pstm != null) {
+					pstm.close();
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public List<Contato> getContatos()  {
 		String sql = "SELECT * FROM contatos";
 

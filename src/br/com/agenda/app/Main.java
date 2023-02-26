@@ -1,9 +1,14 @@
 package br.com.agenda.app;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import br.com.agenda.dao.ContatoDAO;
 import br.com.agenda.model.Contato;
+import br.com.pessoa.model.Funcionario;
+import br.com.pessoa.model.Pessoa;
 
 public class Main {
 
@@ -26,12 +31,47 @@ public class Main {
 	    
 	    contatoATL.setId(6);
 	    
-	    contatoDAO.update(contatoATL);
+	   // contatoDAO.update(contatoATL);
 
-		for (Contato c: contatoDAO.getContatos()) {
+	    Contato contatoDel = new Contato();
+	   // contatoDAO.deleteById(4);
+	    
+	    
+	    
+	    
+		/*for (Contato c: contatoDAO.getContatos()) {
 
 			System.out.println(c.getNome());
-		}
+			
+		}*/
+	    
+	   SimpleDateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+	   Calendar calendario = Calendar.getInstance();
+	   System.out.println(formatadorData.format(calendario.getTime()));
+	   
+	   
+	   
+	   Funcionario f1 = new Funcionario();
+	   
+	   f1.setNome("jhonatan chaves");
+	   f1.setMatricula(524781);
+	   f1.setSenha("@224488");
+	   
+	    
+	    Pessoa pessoa1 = new Pessoa();
+	 
+	    
+	    System.out.println(f1.getSenha());
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	}
+
 
 }
